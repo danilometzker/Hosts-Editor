@@ -1,32 +1,40 @@
 .hosts-area {
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 32px);
 
-    .scroll-area {
-        height: calc(100% - 64px);
+  .scroll-area {
+    height: calc(100% - 64px);
 
-        .sticky-table-header {
-            z-index: 1;
-            background-color: #000000;
+    .sticky-table-header {
+      z-index: 1;
+      background-color: #000000;
 
-            tr:hover {
-                background-color: #000000;
-            }
+      tr {
+        cursor: initial;
+      }
 
-            th {
-                color: #fff;
-            }
-        }
+      tr:hover {
+        background-color: #000000;
+      }
 
-        button[role="checkbox"] {
-            cursor: pointer;
-        }
+      th {
+        color: #fff;
+      }
     }
 
-    .hosts-action {
-        height: 64px;
-        padding: 16px;
-        border-top: 1px solid #dee2e6;
+    tr td {
+      cursor: pointer;
     }
+
+    button[role='checkbox'] {
+      cursor: pointer;
+    }
+  }
+
+  .hosts-action {
+    height: 64px;
+    padding: 16px;
+    border-top: 1px solid #dee2e6;
+  }
 }

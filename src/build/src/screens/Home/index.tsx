@@ -17,6 +17,7 @@ import BottomActions from '@/components/app/BottomActions';
 import { useApp } from '@/contexts/AppContext';
 import type { HostRecord } from '@/types/hosts';
 import { useEffect, useRef, useState } from 'react';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 declare global {
   interface Window {
@@ -25,7 +26,7 @@ declare global {
 }
 
 function Home() {
-  const { hosts, editSingleHost, editHosts } = useApp();
+  const { hosts, editSingleHost, editHosts, editHost } = useApp();
   const [allChecked, setAllChecked] = useState(false);
   const scrollRef = useRef<HTMLTableElement>(null);
   const prevTotalHosts = useRef<number>(hosts.length);
@@ -45,13 +46,13 @@ function Home() {
     }));
 
     editHosts(updatedHosts);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allChecked]);
 
   useEffect(() => {
     if (scrollRef.current) {
       if (prevTotalHosts.current < hosts.length) {
         scrollRef.current.scrollIntoView(false);
-        console.log(`aumentou`, hosts.length - prevTotalHosts.current);
       }
     }
   }, [hosts]);
@@ -83,35 +84,46 @@ function Home() {
                   {hosts.map((host: HostRecord, index: number) => {
                     if (host.ip && host.domains) {
                       return (
-                        <TableRow key={index}>
-                          <TableCell className="font-medium">
-                            <Checkbox
-                              checked={host.checked}
-                              onCheckedChange={checked => {
-                                if (editSingleHost) {
-                                  const updatedHost = {
-                                    ...host,
-                                    checked: checked as boolean
-                                  };
-                                  editSingleHost(index, updatedHost);
-                                }
-                              }}
-                            />
-                          </TableCell>
-                          <TableCell>{host.ip}</TableCell>
-                          <TableCell>{host.domains.join(', ')}</TableCell>
-                          <TableCell className="text-right">
-                            <div className="px-4">
-                              <Switch
-                                color="#2d4864"
+                        <Tooltip key={index}>
+                          <TableRow key={index}>
+                            <TableCell className="font-medium">
+                              <Checkbox
+                                checked={host.checked}
                                 onCheckedChange={checked => {
-                                  handleToggleHost(index, checked);
+                                  if (editSingleHost) {
+                                    const updatedHost = {
+                                      ...host,
+                                      checked: checked as boolean
+                                    };
+                                    editSingleHost(index, updatedHost);
+                                  }
                                 }}
-                                checked={!host.hasComment}
                               />
-                            </div>
-                          </TableCell>
-                        </TableRow>
+                            </TableCell>
+                            <TooltipTrigger asChild>
+                              <TableCell onClick={() => editHost(index)}>{host.ip}</TableCell>
+                            </TooltipTrigger>
+                            <TooltipTrigger asChild>
+                              <TableCell onClick={() => editHost(index)}>
+                                {host.domains.join(', ')}
+                              </TableCell>
+                            </TooltipTrigger>
+                            <TableCell className="text-right">
+                              <div className="px-4">
+                                <Switch
+                                  color="#2d4864"
+                                  onCheckedChange={checked => {
+                                    handleToggleHost(index, checked);
+                                  }}
+                                  checked={!host.hasComment}
+                                />
+                              </div>
+                            </TableCell>
+                          </TableRow>
+                          <TooltipContent side="bottom">
+                            <p>Clique para editar</p>
+                          </TooltipContent>
+                        </Tooltip>
                       );
                     }
                   })}
