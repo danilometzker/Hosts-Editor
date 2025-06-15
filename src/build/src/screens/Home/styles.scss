@@ -1,0 +1,32 @@
+.hosts-area {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 32px);
+
+    .scroll-area {
+        height: calc(100% - 64px);
+
+        .sticky-table-header {
+            z-index: 1;
+            background-color: #000000;
+
+            tr:hover {
+                background-color: #000000;
+            }
+
+            th {
+                color: #fff;
+            }
+        }
+
+        button[role="checkbox"] {
+            cursor: pointer;
+        }
+    }
+
+    .hosts-action {
+        height: 64px;
+        padding: 16px;
+        border-top: 1px solid #dee2e6;
+    }
+}

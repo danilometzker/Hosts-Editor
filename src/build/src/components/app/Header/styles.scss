@@ -1,0 +1,42 @@
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 32px;
+    background-color: #e4e4e4;
+    border-bottom: 1px solid #dee2e6;
+
+    .app-header-title {
+        font-size: 16px;
+        font-weight: 500;
+        color: #212529;
+        margin-left: 16px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .app-header-buttons {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding-right: 8px;
+
+        button {
+            height: 24px;
+            width: 32px;
+            cursor: pointer;
+            border-radius: 4px;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+
+            &.app-header-close-button {
+                &:hover {
+                    background-color: #ff3636;
+                }
+            }
+        }
+    }
+}

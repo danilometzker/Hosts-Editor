@@ -1,0 +1,21 @@
+.app-bottom-actions {
+    padding: 0 16px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-sizing: border-box;
+    border-top: 1px solid #dee2e6;
+
+    button {
+        cursor: pointer;
+
+        &.bg-destructive {
+            background-color: rgb(233, 58, 58);
+
+            &:hover {
+                background-color: rgb(247, 87, 87);
+            }
+        }
+    }
+}
