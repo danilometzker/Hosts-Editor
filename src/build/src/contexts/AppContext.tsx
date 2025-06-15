@@ -11,8 +11,8 @@ interface AppContextType {
   hostsContent: string;
   saveHosts: () => Promise<void>;
   editSingleHost?: (index: number, newHost: HostRecord) => void;
-  addHost: () => void;
-  editHost: (index: number) => void;
+  openAddForm: () => void;
+  openEditForm: (index: number) => void;
   editHosts: (newHosts: HostRecord[]) => void;
   resetHosts: () => void;
   hasUpdatedHosts: boolean;
@@ -55,10 +55,14 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const saveHosts = async () => {
     let hostsContent = '';
     hosts.forEach(host => {
-      if (host.hasComment) {
-        hostsContent += `# ${host.ip} ${host.domains.join(' ')}\n`;
+      if (host.hasComment && !host.ip && host.domains.length === 0) {
+        // Linha é apenas um comentário
+        hostsContent += `# ${host.comment}\n`;
       } else {
-        hostsContent += `${host.ip} ${host.domains.join(' ')}\n`;
+        // Linha com IP, domínios e/ou comentário
+        const domains = host.domains.join(' ');
+        const comment = host.comment ? `# ${host.comment}` : '';
+        hostsContent += `${host.ip} ${domains} ${comment}\n`.trim() + '\n';
       }
     });
 
@@ -89,7 +93,6 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   };
   const editHosts = (newHosts: HostRecord[]) => {
     setHosts(newHosts);
-    console.log(`editado`, newHosts.length);
   };
 
   useEffect(() => {
@@ -100,11 +103,11 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     }
   }, [hosts, originalHosts]);
 
-  const addHost = () => {
+  const openAddForm = () => {
     setIsAddFormOpen(true);
   };
 
-  const editHost = (index: number) => {
+  const openEditForm = (index: number) => {
     setIsAddFormOpen(true);
     setHostToEdit(index);
   };
@@ -118,7 +121,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       checked: false,
       ip: data.ip,
       domains: data.domains,
-      hasComment: false
+      hasComment: false,
+      comment: data.comment
     };
     if (hostToEdit) {
       editSingleHost(hostToEdit, newHost);
@@ -135,8 +139,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         hostsContent,
         saveHosts,
         editSingleHost,
-        addHost,
-        editHost,
+        openAddForm,
+        openEditForm,
         editHosts,
         resetHosts,
         hasUpdatedHosts

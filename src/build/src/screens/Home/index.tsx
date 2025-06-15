@@ -12,12 +12,12 @@ import {
 } from '@/components/ui/table';
 import { Switch } from '@/components/ui/switch';
 import { ScrollArea } from '@/components/ui/scroll-area';
-
 import BottomActions from '@/components/app/BottomActions';
 import { useApp } from '@/contexts/AppContext';
 import type { HostRecord } from '@/types/hosts';
 import { useEffect, useRef, useState } from 'react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { BiInfoCircle } from 'react-icons/bi';
 
 declare global {
   interface Window {
@@ -26,7 +26,7 @@ declare global {
 }
 
 function Home() {
-  const { hosts, editSingleHost, editHosts, editHost } = useApp();
+  const { hosts, editSingleHost, editHosts, openEditForm } = useApp();
   const [allChecked, setAllChecked] = useState(false);
   const scrollRef = useRef<HTMLTableElement>(null);
   const prevTotalHosts = useRef<number>(hosts.length);
@@ -101,11 +101,23 @@ function Home() {
                               />
                             </TableCell>
                             <TooltipTrigger asChild>
-                              <TableCell onClick={() => editHost(index)}>{host.ip}</TableCell>
+                              <TableCell onClick={() => openEditForm(index)}>{host.ip}</TableCell>
                             </TooltipTrigger>
                             <TooltipTrigger asChild>
-                              <TableCell onClick={() => editHost(index)}>
-                                {host.domains.join(', ')}
+                              <TableCell onClick={() => openEditForm(index)}>
+                                <div className="domains-container">
+                                  {host.domains.join(', ')}
+                                  {host.comment && (
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <BiInfoCircle />
+                                      </TooltipTrigger>
+                                      <TooltipContent side="right">
+                                        <p>{host.comment}</p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  )}
+                                </div>
                               </TableCell>
                             </TooltipTrigger>
                             <TableCell className="text-right">

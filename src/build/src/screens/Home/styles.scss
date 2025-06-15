@@ -27,6 +27,12 @@
       cursor: pointer;
     }
 
+    .domains-container {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
     button[role='checkbox'] {
       cursor: pointer;
     }
