@@ -52,20 +52,22 @@ const BottomActions = () => {
         Adicionar host
       </Button>
 
-      {hosts.filter(host => host.checked && host.hasComment).length > 0 && (
+      {hosts.filter(host => host.checked && host.ip && host.domains && host.hasComment).length >
+        0 && (
         <Button variant="outline" className="non-draggable" onClick={handleEnableSelected}>
           Ativar ({hosts.filter(host => host.checked).length})
         </Button>
       )}
-      {hosts.filter(host => host.checked && !host.hasComment).length > 0 && (
+      {hosts.filter(host => host.checked && host.ip && host.domains && !host.hasComment).length >
+        0 && (
         <Button variant="outline" className="non-draggable" onClick={handleDisableSelected}>
-          Desativar ({hosts.filter(host => host.checked).length})
+          Desativar ({hosts.filter(host => host.checked && host.ip && host.domains).length})
         </Button>
       )}
 
       {hosts.filter(host => host.checked).length > 0 && (
         <Button variant="destructive" className="non-draggable" onClick={handleDeleteSelected}>
-          Apagar ({hosts.filter(host => host.checked).length})
+          Apagar ({hosts.filter(host => host.checked && host.ip && host.domains).length})
         </Button>
       )}
 
