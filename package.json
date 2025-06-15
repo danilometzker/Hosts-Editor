@@ -6,12 +6,13 @@
   "icon": "src/icon.ico",
   "main": "src/index.js",
   "scripts": {
-    "start": "electron-forge start",
+    "vite:dev": "cd ./src/build && npm run dev && cd ../../",
+    "start": "concurrently \"npm run vite:dev\" \"electron-forge start\"",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\"",
-    "vite:build": "cd ./src/build && vite build && cd ../../",
+    "vite:build": "cd ./src/build && npm run build && cd ../../",
     "build": "npm run vite:build && electron-builder"
   },
   "build": {
@@ -58,6 +59,7 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.8.1",
     "@electron-forge/plugin-fuses": "^7.8.1",
     "@electron/fuses": "^1.8.0",
+    "concurrently": "^9.1.2",
     "electron": "36.4.0",
     "electron-builder": "^26.0.12"
   }
