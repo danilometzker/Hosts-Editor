@@ -87,6 +87,7 @@ typings/
 
 # Vite
 .vite/
+renderer/
 
 # Electron-Forge
 out/

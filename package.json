@@ -1,63 +1,64 @@
 {
-    "name": "HostsEditor",
-    "productName": "hostseditor",
-    "version": "1.0.0",
-    "description": "Hosts file editor for Windows",
-    "icon": "src/icon.ico",
-    "main": "src/index.js",
-    "scripts": {
-        "start": "electron-forge start",
-        "package": "electron-forge package",
-        "make": "electron-forge make",
-        "publish": "electron-forge publish",
-        "lint": "echo \"No linting configured\"",
-        "build": "electron-builder"
+  "name": "HostsEditor",
+  "productName": "hostseditor",
+  "version": "1.0.0",
+  "description": "Hosts file editor for Windows",
+  "icon": "src/icon.ico",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\"",
+    "vite:build": "cd ./src/build && vite build && cd ../../",
+    "build": "npm run vite:build && electron-builder"
+  },
+  "build": {
+    "appId": "br.com.metzker.hostseditor",
+    "productName": "Hosts Editor",
+    "files": [
+      "src/index.js",
+      "src/preload.js",
+      "node_modules/sudo-prompt/**/*",
+      "!src/build/**",
+      "src/build/renderer/**",
+      "!**/*.map"
+    ],
+    "asar": true,
+    "win": {
+      "target": "nsis",
+      "requestedExecutionLevel": "requireAdministrator",
+      "icon": "src/icon.ico"
     },
-    "build": {
-        "appId": "br.com.metzker.hostseditor",
-        "productName": "Hosts Editor",
-        "files": [
-            "src/index.js",
-            "src/preload.js",
-            "node_modules/sudo-prompt/**/*",
-            "!src/build/**",
-            "src/build/renderer/**",
-            "!**/*.map"
-        ],
-        "asar": true,
-        "win": {
-            "target": "nsis",
-            "requestedExecutionLevel": "requireAdministrator",
-            "icon": "src/icon.ico"
-        },
-        "mac": {
-            "target": "dmg"
-        },
-        "linux": {
-            "target": "AppImage"
-        }
+    "mac": {
+      "target": "dmg"
     },
-    "keywords": [],
-    "author": {
-        "name": "Danilo Metzker",
-        "email": "danilometzker@gmail.com"
-    },
-    "license": "MIT",
-    "dependencies": {
-        "electron-is-dev": "^3.0.1",
-        "electron-squirrel-startup": "^1.0.1",
-        "sudo-prompt": "^9.2.1"
-    },
-    "devDependencies": {
-        "@electron-forge/cli": "^7.8.1",
-        "@electron-forge/maker-deb": "^7.8.1",
-        "@electron-forge/maker-rpm": "^7.8.1",
-        "@electron-forge/maker-squirrel": "^7.8.1",
-        "@electron-forge/maker-zip": "^7.8.1",
-        "@electron-forge/plugin-auto-unpack-natives": "^7.8.1",
-        "@electron-forge/plugin-fuses": "^7.8.1",
-        "@electron/fuses": "^1.8.0",
-        "electron": "36.4.0",
-        "electron-builder": "^26.0.12"
+    "linux": {
+      "target": "AppImage"
     }
+  },
+  "keywords": [],
+  "author": {
+    "name": "Danilo Metzker",
+    "email": "danilometzker@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "electron-is-dev": "^3.0.1",
+    "electron-squirrel-startup": "^1.0.1",
+    "sudo-prompt": "^9.2.1"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.8.1",
+    "@electron-forge/maker-deb": "^7.8.1",
+    "@electron-forge/maker-rpm": "^7.8.1",
+    "@electron-forge/maker-squirrel": "^7.8.1",
+    "@electron-forge/maker-zip": "^7.8.1",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.8.1",
+    "@electron-forge/plugin-fuses": "^7.8.1",
+    "@electron/fuses": "^1.8.0",
+    "electron": "36.4.0",
+    "electron-builder": "^26.0.12"
+  }
 }
