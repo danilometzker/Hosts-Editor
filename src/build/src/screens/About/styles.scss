@@ -1,0 +1,24 @@
+.about-container {
+  height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  hr {
+    margin: 16px 0;
+    width: 100%;
+  }
+
+  .wmde-markdown {
+    background-color: transparent;
+  }
+
+  .scroll-area {
+    flex: 1;
+    height: calc(100%);
+
+    [data-radix-scroll-area-viewport] {
+      padding: 16px;
+    }
+  }
+}
