@@ -1,0 +1,52 @@
+{
+  "en-US": {
+    "translation": {
+      "ip_address": "IP Address",
+      "domain": "Domain",
+      "domains": "Domains",
+      "domain_domains": "Domains",
+      "click_to_edit": "Click to edit",
+      "form_edit_title": "Edit host",
+      "form_edit_description": "Edit the host details.",
+      "input_domains_placeholder": "Separate the domains with commas",
+      "input_description_label": "Description",
+      "input_description_placeholder": "Enter a description (optional)",
+      "form_cancel": "Cancel",
+      "form_submit_edit": "Save",
+      "form_add_title": "Create new host",
+      "form_add_description": "Fill out the form below to add a new host.",
+      "form_submit_add": "Create",
+      "add_new_host": "Create host",
+      "apply_changes": "Apply changes",
+      "enable": "Enable",
+      "disable": "Disable",
+      "delete": "Delete",
+      "undo_changes": "Undo changes"
+    }
+  },
+  "pt-BR": {
+    "translation": {
+      "ip_address": "Endereço de IP",
+      "domain": "Domínio",
+      "domains": "Domínios",
+      "domain_domains": "Domínio(s)",
+      "click_to_edit": "Clique para editar",
+      "form_edit_title": "Editar host",
+      "form_edit_description": "Altere os dados do host.",
+      "input_domains_placeholder": "Separe os domínios com vírgula",
+      "input_description_label": "Descrição",
+      "input_description_placeholder": "Insira uma descrição (opcional)",
+      "form_cancel": "Cancelar",
+      "form_submit_edit": "Salvar",
+      "form_add_title": "Criar novo host",
+      "form_add_description": "Preencha os campos abaixo para adicionar um novo host.",
+      "form_submit_add": "Criar",
+      "add_new_host": "Criar host",
+      "apply_changes": "Aplicar alterações",
+      "enable": "Ativar",
+      "disable": "Desativar",
+      "delete": "Excluir",
+      "undo_changes": "Desfazer alterações"
+    }
+  }
+}
