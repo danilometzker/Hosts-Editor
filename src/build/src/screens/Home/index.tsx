@@ -54,6 +54,7 @@ function Home() {
       if (prevTotalHosts.current < hosts.length) {
         scrollRef.current.scrollIntoView(false);
       }
+      prevTotalHosts.current = hosts.length;
     }
   }, [hosts]);
 

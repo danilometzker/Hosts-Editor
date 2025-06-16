@@ -56,13 +56,14 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     let hostsContent = '';
     hosts.forEach(host => {
       if (host.hasComment && !host.ip && host.domains.length === 0) {
-        // Linha é apenas um comentário
+        // comment only
         hostsContent += `# ${host.comment}\n`;
       } else {
-        // Linha com IP, domínios e/ou comentário
+        // Mount hosts syntax
         const domains = host.domains.join(' ');
         const comment = host.comment ? `# ${host.comment}` : '';
-        hostsContent += `${host.ip} ${domains} ${comment}\n`.trim() + '\n';
+        const enabled = host.hasComment ? '# ' : '';
+        hostsContent += `${enabled}${host.ip} ${domains} ${comment}\n`.trim() + '\n';
       }
     });
 
