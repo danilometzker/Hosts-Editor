@@ -12,7 +12,7 @@ if (electronSquirrelStartup) {
 let mainWindow;
 
 const createWindow = () => {
-  const preloadPath = path.join(__dirname, 'preload.js');
+  const preloadPath = path.join(__dirname, 'preload.cjs');
 
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -35,7 +35,7 @@ const createWindow = () => {
   });
 
   if (app.isPackaged) {
-    const startUrl = path.join(__dirname, '/build/renderer/index.html');
+    const startUrl = path.join(__dirname, '/dist/renderer/index.html');
     mainWindow.loadFile(startUrl);
     mainWindow.webContents.closeDevTools();
   } else {
